@@ -1,0 +1,40 @@
+#version: '3.9'
+services:
+
+    ping:
+        build: ./ping
+
+    calc:
+        build: ./calc
+
+    soma:
+        build: ./soma
+
+    sub:
+        build: ./sub
+    
+    mult1:
+        build: ./mult
+        # container_name: mult1
+
+    mult2:
+        build: ./mult
+    #     container_name: mult2
+
+    mult3_backup:
+        build: ./mult
+    #     container_name: mult3_backup
+
+    nginx:
+        container_name: nginx
+        build: ./nginx
+        ports:
+            - 80:80
+        depends_on:
+           - ping
+           - calc
+           - soma
+           - sub
+           - mult1
+           - mult2
+           - mult3_backup
